@@ -33,3 +33,9 @@ RUN \
    gunzipc -c - | tar fx - ) && \
    mv kafka_2.10-0.8.2.2 /kafka && \
    apk del curl wget
+
+ENV PATH /logstash/bin:$PATH
+COPY docker-entrypoint.sh /
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["logstash", "agent"]
